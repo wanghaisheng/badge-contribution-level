@@ -1,0 +1,207 @@
+<html><head><base href="https://example.com/">
+<style>
+:root {
+  --primary-color: #f0c634;
+  --secondary-color: #e36b2c;
+  --background-dark: #1a1a1a;
+  --panel-background: rgba(42, 24, 16, 0.95);
+  --text-light: #fff;
+  --text-dim: #ccc;
+  --spacing-unit: 20px;
+  
+  --gold: #FFD700;
+  --wood: #8B4513;
+  --water: #1E90FF;
+  --fire: #FF4500;
+  --earth: #8B4513;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--background-dark);
+  color: var(--text-light);
+  font-family: system-ui, sans-serif;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.energy-calculator {
+  background: var(--panel-background);
+  border-radius: 15px;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.element-display {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.element-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.element-card:hover {
+  transform: scale(1.05);
+}
+
+.element-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.element-value {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-dim);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+button {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+</style>
+
+<script>
+class EnergyCalculator {
+  constructor() {
+    this.elements = {
+      gold: { name: '金', symbol: '🔧', color: 'var(--gold)' },
+      wood: { name: '木', symbol: '🌳', color: 'var(--wood)' },
+      water: { name: '水', symbol: '💧', color: 'var(--water)' },
+      fire: { name: '火', symbol: '🔥', color: 'var(--fire)' },
+      earth: { name: '土', symbol: '⛰️', color: 'var(--earth)' }
+    };
+    
+    this.init();
+  }
+
+  init() {
+    this.createUI();
+    this.attachEventListeners();
+  }
+
+  createUI() {
+    document.querySelector('.app-container').innerHTML = `
+      <div class="energy-calculator">
+        <h2>今日能量计算器</h2>
+        <div class="input-group">
+          <label>请输入您的生日：</label>
+          <input type="date" id="birthdate">
+        </div>
+        <button id="calculate">计算今日能量</button>
+        <div class="element-display">
+          ${Object.entries(this.elements).map(([key, element]) => `
+            <div class="element-card" style="border: 2px solid ${element.color}">
+              <div class="element-icon">${element.symbol}</div>
+              <div>${element.name}</div>
+              <div class="element-value" id="${key}-value">0%</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  attachEventListeners() {
+    document.getElementById('calculate').addEventListener('click', () => {
+      this.calculateEnergy();
+    });
+  }
+
+  calculateEnergy() {
+    const birthdate = new Date(document.getElementById('birthdate').value);
+    const today = new Date();
+    
+    // Using various date components to generate pseudo-random but consistent daily values
+    const seed = birthdate.getDate() + today.getDate() + today.getMonth() + 1;
+    const values = this.generateValues(seed);
+    
+    Object.keys(this.elements).forEach((element, index) => {
+      const value = values[index];
+      document.getElementById(`${element}-value`).textContent = `${value}%`;
+      this.animateValue(element, value);
+    });
+  }
+
+  generateValues(seed) {
+    const values = [];
+    let remaining = 100;
+    
+    for (let i = 0; i < 4; i++) {
+      const value = Math.min(remaining, Math.floor((seed * (i + 1) * 17) % 30) + 10);
+      values.push(value);
+      remaining -= value;
+    }
+    values.push(remaining);
+    
+    return values;
+  }
+
+  animateValue(element, targetValue) {
+    const elementValue = document.getElementById(`${element}-value`);
+    let currentValue = 0;
+    const duration = 1000;
+    const steps = 20;
+    const increment = targetValue / steps;
+    
+    const interval = setInterval(() => {
+      currentValue += increment;
+      if (currentValue >= targetValue) {
+        currentValue = targetValue;
+        clearInterval(interval);
+      }
+      elementValue.textContent = `${Math.round(currentValue)}%`;
+    }, duration / steps);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new EnergyCalculator();
+});
+</script>
+</head>
+<body>
+  <div class="app-container">
+  </div>
+</body>
+</html>

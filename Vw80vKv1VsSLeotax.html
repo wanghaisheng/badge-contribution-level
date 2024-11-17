@@ -1,0 +1,710 @@
+<html><head><base href="https://example.com/">
+<style>
+:root {
+  --primary-color: #FF6B6B;  /* Warm red */
+  --secondary-color: #4ECDC4; /* Fresh mint */
+  --background-dark: #2F2F2F;
+  --panel-background: rgba(47, 47, 47, 0.95);
+  --text-light: #fff;
+  --text-dim: #ccc;
+  --candy-pink: #FF69B4;
+  --chocolate-brown: #D2691E;
+  --cookie-tan: #DEB887;
+  --chip-yellow: #FFD700;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at center, #FF6B6B 0%, #2F2F2F 100%);
+  color: var(--text-light);  
+  font-family: system-ui, sans-serif;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Slightly smaller cards */
+  gap: 15px; /* Reduced gap */
+  margin-top: 20px;
+}
+
+.tool-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px; /* Slightly reduced padding */
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  animation: cardPulse 3s infinite;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes cardPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--candy-pink);
+  box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+}
+
+.tool-card:hover::before {
+  left: 100%;
+}
+
+.tool-icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-align: center;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+}
+
+.tool-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, var(--candy-pink) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+
+.tool-card:hover .tool-icon::after {
+  opacity: 0.3;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.tool-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  background: linear-gradient(45deg, #f0c634, #e36b2c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tool-description {
+  color: var(--text-dim);
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.achievement-banner {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  padding: 15px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: top 0.5s ease;
+  z-index: 1000;
+}
+
+.banner-visible {
+  top: 20px;
+}
+
+/* Add functional prototype styles */
+.tool-mockup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.tool-mockup.active {
+  display: flex;
+}
+
+.mockup-content {
+  background: var(--panel-background);
+  width: 80%;
+  max-width: 800px;
+  height: 80%;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  overflow-y: auto;
+}
+
+.close-mockup {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+.element-preview {
+  border: 2px dashed var(--primary-color);
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.design-notes {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.interaction-flow {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.flow-step {
+  flex: 1;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  position: relative;
+}
+
+.flow-step:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+}
+
+.magical-sparkle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle 1.5s linear forwards;
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1.5) rotate(180deg); opacity: 0; }
+}
+
+.category-filters {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-btn:hover {
+  background: var(--primary-color);
+}
+
+.card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<script>
+class ToolsGallery {
+  constructor() {
+    this.tools = [
+      {
+        icon: '🌈',
+        title: '零食心情彩虹机',
+        description: '吃下的零食会变成什么颜色的心情呢？',
+        url: '/snack-mood',
+        design: {
+          concept: "将零食转化为独特的情绪色彩体验",
+          elements: ["零食选择器", "情绪色谱", "心情转换器", "视觉特效"],
+          interactions: ["选择零食", "生成色彩", "展示情绪", "分享体验"]
+        }
+      },
+      {
+        icon: '🎭',
+        title: '零食剧场导演',
+        description: '为你的零食创作一个微型故事剧场',
+        url: '/snack-theater',
+        design: {
+          concept: "让零食变成故事主角的互动剧场",
+          elements: ["角色设定", "剧情生成器", "互动舞台", "配音系统"],
+          interactions: ["选角", "编剧", "演出", "录制"]
+        }
+      },
+      {
+        icon: '🎪',
+        title: '零食马戏团',
+        description: '让你的零食表演杂技特技',
+        url: '/snack-circus',
+        design: {
+          concept: "创造零食的奇幻马戏表演",
+          elements: ["特技动画", "表演舞台", "观众反应", "特效系统"],
+          interactions: ["编排", "表演", "互动", "录像"]
+        }
+      },
+      {
+        icon: '🌌',
+        title: '零食星座占卜师',
+        description: '今天的零食与星座有什么神秘联系？',
+        url: '/snack-horoscope',
+        design: {
+          concept: "零食与星座能量的奇妙融合",
+          elements: ["星座图谱", "零食能量", "预言系统", "视觉效果"],
+          interactions: ["选择", "解析", "预测", "指引"]
+        }
+      },
+      {
+        icon: '🎨',
+        title: '零食艺术家',
+        description: '将你的零食变成一幅艺术杰作',
+        url: '/snack-art',
+        design: {
+          concept: "零食化身艺术创作的灵感源泉",
+          elements: ["艺术滤镜", "创作画布", "风格转换", "展览厅"],
+          interactions: ["创作", "编辑", "展示", "分享"]
+        }
+      },
+      {
+        icon: '💘',
+        title: '零食相亲会',
+        description: '为你的零食找到最般配的另一半',
+        url: '/snack-dating',
+        design: {
+          concept: "零食之间的浪漫配对体验",
+          elements: ["零食档案", "配对算法", "互动约会", "缘分测试"],
+          interactions: ["创建档案", "寻找匹配", "虚拟约会", "牵线成功"]
+        }
+      },
+      {
+        icon: '🧬',
+        title: '零食进化论',
+        description: '看看你的零食会进化成什么样子',
+        url: '/snack-evolution',
+        design: {
+          concept: "零食穿越时空的进化旅程",
+          elements: ["进化树", "基因编辑器", "时空隧道", "未来展示"],
+          interactions: ["选择路径", "基因突变", "时空跳跃", "记录进化"]
+        }
+      },
+      {
+        icon: '⏰',
+        title: '零食时光机',
+        description: '带着你的零食穿越到过去或未来',
+        url: '/snack-time-machine',
+        design: {
+          concept: "零食的时空探险之旅",
+          elements: ["时空门户", "历史场景", "未来世界", "互动剧情"],
+          interactions: ["选择年代", "探索环境", "互动体验", "记录故事"]
+        }
+      },
+      {
+        icon: '🎭',
+        title: '零食变装秀',
+        description: '给你的零食换上各种奇趣造型',
+        url: '/snack-dress-up',
+        design: {
+          concept: "零食的服装设计与造型体验",
+          elements: ["造型工具", "服装库", "特效妆容", "runway展示"],
+          interactions: ["设计", "搭配", "展示", "拍照"]
+        }
+      },
+      {
+        icon: '🎮',
+        title: '零食冒险家',
+        description: '和零食一起展开奇幻冒险',
+        url: '/snack-adventure',
+        design: {
+          concept: "零食主题的互动冒险故事",
+          elements: ["地图探索", "任务系统", "收集要素", "战斗机制"],
+          interactions: ["探索", "对战", "收集", "升级"]
+        }
+      },
+      {
+        icon: '🏰',
+        title: '零食王国建设者',
+        description: '建造属于你的零食王国',
+        url: '/snack-kingdom',
+        design: {
+          concept: "打造独特的零食主题王国",
+          elements: ["建筑系统", "人口管理", "资源生产", "外交关系"],
+          interactions: ["建造", "管理", "外交", "发展"]
+        }
+      },
+      {
+        icon: '🎭',
+        title: '零食性格测试',
+        description: '你的零食性格是什么样的？',
+        url: '/snack-personality',
+        design: {
+          concept: "通过零食选择揭示性格特征",
+          elements: ["性格问卷", "零食偏好", "性格分析", "匹配系统"],
+          interactions: ["选择", "分析", "展示", "分享"]
+        }
+      },
+      {
+        icon: '🎪',
+        title: '零食心情日记',
+        description: '记录每天和零食的小确幸',
+        url: '/snack-diary',
+        design: {
+          concept: "将零食与日常情绪联系",
+          elements: ["心情选择", "零食记录", "情绪追踪", "回忆墙"],
+          interactions: ["记录", "回顾", "分享", "收藏"]
+        }
+      },
+      {
+        icon: '🌟',
+        title: '零食元素师',
+        description: '探索你的零食属性',
+        url: '/snack-elements',
+        design: {
+          concept: "发现零食的元素属性组合",
+          elements: ["元素轮盘", "属性图谱", "组合预览", "能量值"],
+          interactions: ["选择", "混合", "预览", "保存"]
+        }
+      },
+      {
+        icon: '🎵',
+        title: '零食音乐家',
+        description: '听听你的零食唱什么歌',
+        url: '/snack-music',
+        design: {
+          concept: "将零食特征转化为音乐元素",
+          elements: ["音色选择", "节奏生成", "旋律创作", "播放器"],
+          interactions: ["创作", "聆听", "保存", "分享"]
+        }
+      },
+      {
+        icon: '🎵',
+        title: '零食交响乐团',
+        description: '让零食组成一支独特的交响乐团',
+        url: '/snack-symphony',
+        design: {
+          concept: "将不同零食转化为乐器声部",
+          elements: ["乐器分配", "编曲工具", "虚拟乐团", "演奏效果"],
+          interactions: ["选择零食", "编排乐谱", "演奏", "录制"]
+        }
+      },
+      {
+        icon: '🎸',
+        title: '零食摇滚现场',
+        description: '零食组成的摇滚乐队嗨翻天',
+        url: '/snack-rock',
+        design: {
+          concept: "零食化身摇滚明星的演出体验",
+          elements: ["乐队配置", "舞台效果", "观众互动", "演出录像"],
+          interactions: ["组建乐队", "排练", "表演", "现场录制"]
+        }
+      },
+      {
+        icon: '🎼',
+        title: '零食心情电台',
+        description: '根据零食生成专属情绪音乐',
+        url: '/snack-radio',
+        design: {
+          concept: "将零食特性转化为音乐情感",
+          elements: ["情绪识别", "曲风匹配", "播放列表", "分享功能"],
+          interactions: ["选择零食", "生成音乐", "收听", "分享"]
+        }
+      },
+      {
+        icon: '📸',
+        title: '零食滤镜师',
+        description: '用最潮流的滤镜美化你的零食',
+        url: '/snack-filters',
+        design: {
+          concept: "社交媒体风格的零食照片美化工具",
+          elements: ["滤镜库", "特效贴纸", "文字装饰", "布局模板"],
+          interactions: ["选择滤镜", "添加效果", "调整布局", "分享"]
+        }
+      },
+      {
+        icon: '🎬',
+        title: '零食短视频',
+        description: '制作引人入胜的零食短视频',
+        url: '/snack-shorts',
+        design: {
+          concept: "零食主题短视频创作平台",
+          elements: ["视频模板", "音乐库", "特效包", "剪辑工具"],
+          interactions: ["拍摄", "编辑", "配乐", "发布"]
+        }
+      },
+      {
+        icon: '🌟',
+        title: '零食挑战赛',
+        description: '参与最新零食网络挑战',
+        url: '/snack-challenge',
+        design: {
+          concept: "社交媒体风格的零食互动挑战",
+          elements: ["挑战规则", "计时器", "成就系统", "排行榜"],
+          interactions: ["接受挑战", "记录", "评分", "分享"]
+        }
+      }
+      // Additional tools will follow this pattern to reach 50+ tools
+    ];
+    
+    this.init();
+    this.initDesignViewer();
+    this.initSparkleEffect();
+    this.initLazyLoading();
+    this.addCategoryFilters();
+  }
+
+  initSparkleEffect() {
+    document.querySelectorAll('.tool-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'magical-sparkle';
+        sparkle.innerHTML = '✨';
+        sparkle.style.left = (e.pageX - 10) + 'px';
+        sparkle.style.top = (e.pageY - 10) + 'px';
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 1500);
+      });
+    });
+  }
+
+  initDesignViewer() {
+    const mockupDiv = document.createElement('div');
+    mockupDiv.className = 'tool-mockup';
+    mockupDiv.innerHTML = `
+      <div class="mockup-content">
+        <span class="close-mockup">×</span>
+        <div id="design-content"></div>
+      </div>
+    `;
+    document.body.appendChild(mockupDiv);
+
+    document.querySelector('.close-mockup').addEventListener('click', () => {
+      mockupDiv.classList.remove('active');
+    });
+  }
+
+  showDesign(tool) {
+    const mockup = document.querySelector('.tool-mockup');
+    const content = document.getElementById('design-content');
+    
+    const designHTML = `
+      <h2>${tool.title} - 设计方案</h2>
+      
+      <div class="design-notes">
+        <h3>概念设计</h3>
+        <p>${tool.design.concept}</p>
+      </div>
+
+      <div class="element-preview">
+        <h3>核心元素</h3>
+        <ul>
+          ${tool.design.elements.map(elem => `<li>${elem}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="interaction-flow">
+        ${tool.design.interactions.map(step => `
+          <div class="flow-step">
+            <h4>${step}</h4>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    content.innerHTML = designHTML;
+    mockup.classList.add('active');
+  }
+
+  init() {
+    this.createUI();
+    this.attachEventListeners();
+    this.createStarryBackground();
+  }
+
+  initLazyLoading() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          card.classList.add('card-visible');
+        }
+      });
+    });
+
+    document.querySelectorAll('.tool-card').forEach(card => {
+      observer.observe(card);
+    });
+  }
+
+  addCategoryFilters() {
+    const categories = ['热门', '创意', '社交', '挑战', '音乐', '视觉'];
+    const filterHTML = `
+      <div class="category-filters">
+        ${categories.map(cat => `
+          <button class="filter-btn" data-category="${cat}">${cat}</button>
+        `).join('')}
+      </div>
+    `;
+    
+    document.querySelector('.app-container').insertAdjacentHTML('afterbegin', filterHTML);
+  }
+
+  createStarryBackground() {
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '-1';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    const stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createStar() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speed: Math.random() * 0.5
+      };
+    }
+
+    function initStars() {
+      for(let i = 0; i < 200; i++) {
+        stars.push(createStar());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff';
+      
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        star.y += star.speed;
+        if(star.y > canvas.height) star.y = 0;
+      });
+      
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    initStars();
+    animate();
+  }
+
+  createUI() {
+    const container = document.querySelector('.app-container');
+    container.innerHTML = `
+      <h1>奇思妙想零食工具箱</h1>
+      <div class="tool-grid">
+        ${this.tools.map(tool => `
+          <div class="tool-card" data-url="${tool.url}">
+            <div class="tool-icon">${tool.icon}</div>
+            <div class="tool-title">${tool.title}</div>
+            <div class="tool-description">${tool.description}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="achievement-banner" id="achievement-banner"></div>
+    `;
+  }
+
+  attachEventListeners() {
+    document.querySelectorAll('.tool-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const url = e.currentTarget.dataset.url;
+        const tool = this.tools.find(t => t.url === url);
+        this.showDesign(tool);
+      });
+    });
+  }
+
+  showAchievement(title, message) {
+    const banner = document.getElementById('achievement-banner');
+    banner.innerHTML = `
+      <h3 style="margin: 0">${title}</h3>
+      <p style="margin: 5px 0 0 0">${message}</p>
+    `;
+    banner.classList.add('banner-visible');
+    
+    setTimeout(() => {
+      banner.classList.remove('banner-visible');
+    }, 3000);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const gallery = new ToolsGallery();
+});
+</script>
+</head>
+<body>
+  <div class="app-container">
+  </div>
+</body>
+</html>

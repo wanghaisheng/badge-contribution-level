@@ -1,0 +1,285 @@
+<html><head><base href="http://localhost/"></head><body>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>修道之路 - Gaming Cultivation Systems</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #1a1a2e;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+        }
+        canvas {
+            display: block;
+            position: fixed;
+            z-index: 1;
+        }
+        #paths-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            flex-wrap: wrap;
+            overflow-y: auto;
+        }
+        .table-container {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin: 2rem;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+        }
+        td {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .table-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #f1c40f, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id="paths-container">
+        <div class="table-container">
+            <h2 class="table-title">修炼境界总览</h2>
+            <table>
+                <tr>
+                    <th>境界层次</th>
+                    <th>凡境</th>
+                    <th>灵境</th>
+                    <th>玄境</th>
+                    <th>仙境</th>
+                    <th>神境</th>
+                </tr>
+                <tr>
+                    <td>内功系</td>
+                    <td>练气初期</td>
+                    <td>筑基中期</td>
+                    <td>金丹后期</td>
+                    <td>元婴大成</td>
+                    <td>合道圆满</td>
+                </tr>
+                <tr>
+                    <td>丹药系</td>
+                    <td>炼气学徒</td>
+                    <td>丹士中阶</td>
+                    <td>丹师大成</td>
+                    <td>丹尊至极</td>
+                    <td>丹圣无双</td>
+                </tr>
+                <tr>
+                    <td>法器系</td>
+                    <td>法器学徒</td>
+                    <td>器师中阶</td>
+                    <td>器道大师</td>
+                    <td>器尊至强</td>
+                    <td>器圣无敌</td>
+                </tr>
+                <tr>
+                    <td>阵法系</td>
+                    <td>阵法新手</td>
+                    <td>阵师中级</td>
+                    <td>阵道大师</td>
+                    <td>阵尊无双</td>
+                    <td>阵圣通天</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2 class="table-title">修炼属性详解</h2>
+            <table>
+                <tr>
+                    <th>系统类型</th>
+                    <th>主要属性</th>
+                    <th>次要属性</th>
+                    <th>特殊效果</th>
+                </tr>
+                <tr>
+                    <td>内功系</td>
+                    <td>灵力、真元</td>
+                    <td>根骨、悟性</td>
+                    <td>自我修复、灵力恢复</td>
+                </tr>
+                <tr>
+                    <td>丹药系</td>
+                    <td>丹道、药理</td>
+                    <td>精神、判断</td>
+                    <td>炼丹速度、成功率提升</td>
+                </tr>
+                <tr>
+                    <td>法器系</td>
+                    <td>器道、锻造</td>
+                    <td>力量、专注</td>
+                    <td>装备强化、耐久提升</td>
+                </tr>
+                <tr>
+                    <td>阵法系</td>
+                    <td>阵道、灵识</td>
+                    <td>智慧、洞察</td>
+                    <td>阵法范围、持续时间</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2 class="table-title">修炼技能树</h2>
+            <table>
+                <tr>
+                    <th>系统分支</th>
+                    <th>基础技能</th>
+                    <th>进阶技能</th>
+                    <th>终极技能</th>
+                </tr>
+                <tr>
+                    <td>内功系</td>
+                    <td>吐纳术、冥想</td>
+                    <td>御气诀、金刚体</td>
+                    <td>天地同寿、不死长生</td>
+                </tr>
+                <tr>
+                    <td>丹药系</td>
+                    <td>辨药术、炼丹术</td>
+                    <td>丹火控制、破障丹诀</td>
+                    <td>造化丹经、逆天改命</td>
+                </tr>
+                <tr>
+                    <td>法器系</td>
+                    <td>炼器术、注灵术</td>
+                    <td>器灵唤醒、祭炼大法</td>
+                    <td>神器锻造、造物主诀</td>
+                </tr>
+                <tr>
+                    <td>阵法系</td>
+                    <td>布阵术、阵眼识别</td>
+                    <td>阵法转化、虚空控制</td>
+                    <td>天地大阵、混沌开辟</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Previous animation code remains the same
+        const cursor = document.querySelector('.cursor');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        document.body.insertBefore(canvas, document.body.firstChild);
+
+        let width, height;
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+        
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = 0;
+                this.vy = 0;
+                this.alpha = 0;
+                this.color = `hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
+                this.targetAlpha = Math.random() * 0.3 + 0.1;
+            }
+            
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                const force = Math.max(0, (200 - dist) / 200);
+                const angle = Math.atan2(dy, dx);
+                
+                this.vx += Math.cos(angle) * force * 0.2;
+                this.vy += Math.sin(angle) * force * 0.2;
+                
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                this.alpha += (this.targetAlpha - this.alpha) * 0.1;
+                
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color.replace(')', `, ${this.alpha})`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            
+            particles = Array(150).fill().map(() => new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(26, 26, 46, 0.1)';
+            ctx.fillRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
+</body>
+</html>
+</body></html>

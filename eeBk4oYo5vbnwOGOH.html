@@ -1,0 +1,382 @@
+<html><head><base href="http://localhost/"></head><body>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>修道之路 - Extended Paths of Cultivation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #1a1a2e;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+        }
+        canvas {
+            display: block;
+            position: fixed;
+            z-index: 1;
+        }
+        #paths-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+        .path {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 22%;
+            min-width: 250px;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            margin: 1rem;
+        }
+        .path:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        .path h2 {
+            text-align: center;
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #f1c40f, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .level {
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .level:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .alt-title {
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.3rem;
+        }
+        
+        #传道 .level { border-color: rgba(141, 241, 138, 0.3); }
+        #护道 .level { border-color: rgba(241, 196, 15, 0.3); }
+        #求道 .level { border-color: rgba(231, 76, 60, 0.3); }
+        #炼道 .level { border-color: rgba(52, 152, 219, 0.3); }
+        #养道 .level { border-color: rgba(155, 89, 182, 0.3); }
+        #化道 .level { border-color: rgba(46, 204, 113, 0.3); }
+        #悟道 .level { border-color: rgba(230, 126, 34, 0.3); }
+        #明道 .level { border-color: rgba(52, 152, 219, 0.3); }
+        
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id="paths-container">
+        <div class="path" id="传道">
+            <h2>传道系统</h2>
+            <div class="level">
+                药草引路人
+                <div class="alt-title">药境探索者 | 草木通灵师</div>
+            </div>
+            <div class="level">
+                医道启蒙者
+                <div class="alt-title">养生明师 | 药理开悟者</div>
+            </div>
+            <div class="level">
+                济世传薪人
+                <div class="alt-title">医道弘扬使 | 药理宣化师</div>
+            </div>
+            <div class="level">
+                悬壶济世者
+                <div class="alt-title">医道通明使 | 济世菩提心</div>
+            </div>
+            <div class="level">
+                医道圣贤
+                <div class="alt-title">药王再世 | 医道君子</div>
+            </div>
+        </div>
+        
+        <div class="path" id="护道">
+            <h2>护道系统</h2>
+            <div class="level">
+                药道守望者
+                <div class="alt-title">医术护法 | 药理卫士</div>
+            </div>
+            <div class="level">
+                医道守护使
+                <div class="alt-title">药道护法者 | 医道卫道人</div>
+            </div>
+            <div class="level">
+                医道昭明使
+                <div class="alt-title">医理护持者 | 药道明光使</div>
+            </div>
+            <div class="level">
+                医道明世君
+                <div class="alt-title">药道天使 | 医道守护神</div>
+            </div>
+            <div class="level">
+                医道天师
+                <div class="alt-title">药道化身 | 医道真君</div>
+            </div>
+        </div>
+
+        <div class="path" id="求道">
+            <h2>求道系统</h2>
+            <div class="level">
+                寻药使者
+                <div class="alt-title">药道求索人 | 医理探寻者</div>
+            </div>
+            <div class="level">
+                悟道修药师
+                <div class="alt-title">药理参悟者 | 医道求真人</div>
+            </div>
+            <div class="level">
+                医道求索君
+                <div class="alt-title">药道参玄人 | 医理明悟者</div>
+            </div>
+            <div class="level">
+                药道通玄者
+                <div class="alt-title">医道明心人 | 药理通神者</div>
+            </div>
+            <div class="level">
+                医道至尊
+                <div class="alt-title">药道真人 | 医理圣者</div>
+            </div>
+        </div>
+
+        <div class="path" id="炼道">
+            <h2>炼道系统</h2>
+            <div class="level">
+                丹药学士
+                <div class="alt-title">药理研习生 | 医道技士</div>
+            </div>
+            <div class="level">
+                炼丹真传
+                <div class="alt-title">药道技师 | 医理工匠</div>
+            </div>
+            <div class="level">
+                丹道大匠
+                <div class="alt-title">药理大师 | 医道技圣</div>
+            </div>
+            <div class="level">
+                炼丹宗师
+                <div class="alt-title">药道创新使 | 医理圣匠</div>
+            </div>
+            <div class="level">
+                丹道至圣
+                <div class="alt-title">药理天师 | 医道创世主</div>
+            </div>
+        </div>
+
+        <div class="path" id="养道">
+            <h2>养道系统</h2>
+            <div class="level">
+                养生学徒
+                <div class="alt-title">生机启蒙者 | 养气初士</div>
+            </div>
+            <div class="level">
+                养气明士
+                <div class="alt-title">生命滋养师 | 养生修习者</div>
+            </div>
+            <div class="level">
+                养道真人
+                <div class="alt-title">生机培育师 | 养生大师</div>
+            </div>
+            <div class="level">
+                养生宗师
+                <div class="alt-title">生命守护者 | 养道真君</div>
+            </div>
+            <div class="level">
+                养道至尊
+                <div class="alt-title">生命圣者 | 养生天师</div>
+            </div>
+        </div>
+
+        <div class="path" id="化道">
+            <h2>化道系统</h2>
+            <div class="level">
+                药理转化士
+                <div class="alt-title">丹药化形师 | 灵药使者</div>
+            </div>
+            <div class="level">
+                丹药化形真传
+                <div class="alt-title">药道化真人 | 灵药大师</div>
+            </div>
+            <div class="level">
+                化道真人
+                <div class="alt-title">丹药化道师 | 灵药宗师</div>
+            </div>
+            <div class="level">
+                化道宗师
+                <div class="alt-title">丹道化身 | 灵药天师</div>
+            </div>
+            <div class="level">
+                化道至尊
+                <div class="alt-title">丹道化神 | 灵药帝君</div>
+            </div>
+        </div>
+
+        <div class="path" id="悟道">
+            <h2>悟道系统</h2>
+            <div class="level">
+                医理悟道士
+                <div class="alt-title">药道参悟者 | 医道修行人</div>
+            </div>
+            <div class="level">
+                药理明悟师
+                <div class="alt-title">医道觉醒者 | 药道修真人</div>
+            </div>
+            <div class="level">
+                悟道真人
+                <div class="alt-title">医理通玄者 | 药道大真人</div>
+            </div>
+            <div class="level">
+                悟道宗师
+                <div class="alt-title">医道通神 | 药理天师</div>
+            </div>
+            <div class="level">
+                悟道至尊
+                <div class="alt-title">医理圣君 | 药道帝尊</div>
+            </div>
+        </div>
+
+        <div class="path" id="明道">
+            <h2>明道系统</h2>
+            <div class="level">
+                医道明士
+                <div class="alt-title">药理启明人 | 医理明悟者</div>
+            </div>
+            <div class="level">
+                药道明师
+                <div class="alt-title">医理通明人 | 药道明光使</div>
+            </div>
+            <div class="level">
+                明道真人
+                <div class="alt-title">医道明德使 | 药理光明使</div>
+            </div>
+            <div class="level">
+                明道宗师
+                <div class="alt-title">医理光明君 | 药道明圣</div>
+            </div>
+            <div class="level">
+                明道至尊
+                <div class="alt-title">医道光明帝 | 药理圣君</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        document.body.insertBefore(canvas, document.body.firstChild);
+
+        let width, height;
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+        
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = 0;
+                this.vy = 0;
+                this.alpha = 0;
+                this.color = `hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
+                this.targetAlpha = Math.random() * 0.3 + 0.1;
+            }
+            
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                const force = Math.max(0, (200 - dist) / 200);
+                const angle = Math.atan2(dy, dx);
+                
+                this.vx += Math.cos(angle) * force * 0.2;
+                this.vy += Math.sin(angle) * force * 0.2;
+                
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                this.alpha += (this.targetAlpha - this.alpha) * 0.1;
+                
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color.replace(')', `, ${this.alpha})`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            
+            particles = Array(150).fill().map(() => new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(26, 26, 46, 0.1)';
+            ctx.fillRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
+</body>
+</html>
+</body></html>

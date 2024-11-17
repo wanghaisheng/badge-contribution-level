@@ -1,0 +1,320 @@
+<html><head><base href="http://localhost/"></head><body>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>修道之路 - Extended Paths of Cultivation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #1a1a2e;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+        }
+        canvas {
+            display: block;
+            position: fixed;
+            z-index: 1;
+        }
+        #paths-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+        .table-container {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin: 2rem;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 1200px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+        }
+        td {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .table-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #f1c40f, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id="paths-container">
+        <div class="table-container">
+            <h2 class="table-title">修道境界对照表</h2>
+            <table>
+                <tr>
+                    <th>系统</th>
+                    <th>初阶</th>
+                    <th>中阶</th>
+                    <th>高阶</th>
+                    <th>宗师</th>
+                    <th>至尊</th>
+                </tr>
+                <tr>
+                    <td>传道系统</td>
+                    <td>药草引路人</td>
+                    <td>医道启蒙者</td>
+                    <td>济世传薪人</td>
+                    <td>悬壶济世者</td>
+                    <td>医道圣贤</td>
+                </tr>
+                <tr>
+                    <td>护道系统</td>
+                    <td>药道守望者</td>
+                    <td>医道守护使</td>
+                    <td>医道昭明使</td>
+                    <td>医道明世君</td>
+                    <td>医道天师</td>
+                </tr>
+                <tr>
+                    <td>求道系统</td>
+                    <td>寻药使者</td>
+                    <td>悟道修药师</td>
+                    <td>医道求索君</td>
+                    <td>药道通玄者</td>
+                    <td>医道至尊</td>
+                </tr>
+                <tr>
+                    <td>炼道系统</td>
+                    <td>丹药学士</td>
+                    <td>炼丹真传</td>
+                    <td>丹道大匠</td>
+                    <td>炼丹宗师</td>
+                    <td>丹道至圣</td>
+                </tr>
+                <tr>
+                    <td>养道系统</td>
+                    <td>养生学徒</td>
+                    <td>养气明士</td>
+                    <td>养道真人</td>
+                    <td>养生宗师</td>
+                    <td>养道至尊</td>
+                </tr>
+                <tr>
+                    <td>化道系统</td>
+                    <td>药理转化士</td>
+                    <td>丹药化形真传</td>
+                    <td>化道真人</td>
+                    <td>化道宗师</td>
+                    <td>化道至尊</td>
+                </tr>
+                <tr>
+                    <td>悟道系统</td>
+                    <td>医理悟道士</td>
+                    <td>药理明悟师</td>
+                    <td>悟道真人</td>
+                    <td>悟道宗师</td>
+                    <td>悟道至尊</td>
+                </tr>
+                <tr>
+                    <td>明道系统</td>
+                    <td>医道明士</td>
+                    <td>药道明师</td>
+                    <td>明道真人</td>
+                    <td>明道宗师</td>
+                    <td>明道至尊</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2 class="table-title">修道特性分类表</h2>
+            <table>
+                <tr>
+                    <th>修道方向</th>
+                    <th>主要特性</th>
+                    <th>代表系统</th>
+                    <th>典型称号</th>
+                </tr>
+                <tr>
+                    <td>治疗系</td>
+                    <td>疗伤救人</td>
+                    <td>传道、养道</td>
+                    <td>悬壶济世者、养生宗师</td>
+                </tr>
+                <tr>
+                    <td>炼制系</td>
+                    <td>丹药炼制</td>
+                    <td>炼道、化道</td>
+                    <td>丹道大匠、化道真人</td>
+                </tr>
+                <tr>
+                    <td>辅助系</td>
+                    <td>增益辅导</td>
+                    <td>护道、求道</td>
+                    <td>医道守护使、悟道修药师</td>
+                </tr>
+                <tr>
+                    <td>探寻系</td>
+                    <td>寻药问道</td>
+                    <td>求道、明道</td>
+                    <td>寻药使者、医道明士</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2 class="table-title">修道境界详解</h2>
+            <table>
+                <tr>
+                    <th>境界等级</th>
+                    <th>修为特点</th>
+                    <th>能力范围</th>
+                    <th>代表称号</th>
+                </tr>
+                <tr>
+                    <td>初阶</td>
+                    <td>入门修习</td>
+                    <td>基础医理</td>
+                    <td>药草引路人、寻药使者</td>
+                </tr>
+                <tr>
+                    <td>中阶</td>
+                    <td>熟悉医道</td>
+                    <td>医理应用</td>
+                    <td>医道启蒙者、养气明士</td>
+                </tr>
+                <tr>
+                    <td>高阶</td>
+                    <td>深化修为</td>
+                    <td>治疗与炼制</td>
+                    <td>济世传薪人、丹道大匠</td>
+                </tr>
+                <tr>
+                    <td>宗师</td>
+                    <td>造诣精深</td>
+                    <td>精通医道</td>
+                    <td>医道宗师、明道宗师</td>
+                </tr>
+                <tr>
+                    <td>至尊</td>
+                    <td>无上境界</td>
+                    <td>统御医理</td>
+                    <td>医道至尊、养道至尊</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        document.body.insertBefore(canvas, document.body.firstChild);
+
+        let width, height;
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+        
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = 0;
+                this.vy = 0;
+                this.alpha = 0;
+                this.color = `hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
+                this.targetAlpha = Math.random() * 0.3 + 0.1;
+            }
+            
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                const force = Math.max(0, (200 - dist) / 200);
+                const angle = Math.atan2(dy, dx);
+                
+                this.vx += Math.cos(angle) * force * 0.2;
+                this.vy += Math.sin(angle) * force * 0.2;
+                
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                this.alpha += (this.targetAlpha - this.alpha) * 0.1;
+                
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color.replace(')', `, ${this.alpha})`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            
+            particles = Array(150).fill().map(() => new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(26, 26, 46, 0.1)';
+            ctx.fillRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
+</body>
+</html>
+</body></html>

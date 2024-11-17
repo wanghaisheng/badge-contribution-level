@@ -1,0 +1,443 @@
+<html><head><base href="http://localhost/"></head><body>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>修道之路 - Advanced Cultivation Systems</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #1a1a2e;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+        }
+        canvas {
+            display: block;
+            position: fixed;
+            z-index: 1;
+        }
+        #paths-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            flex-wrap: wrap;
+            overflow-y: auto;
+        }
+        .table-container {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin: 2rem;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 1800px; /* Increased to accommodate new columns */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+        }
+        td {
+            background: rgba(255, 255, 255, 0.05);
+            vertical-align: top;
+            line-height: 1.4;
+        }
+        .table-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #f1c40f, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .new-section {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+        .description {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        td ul {
+            margin: 0;
+            padding-left: 1.2em;
+        }
+        td li {
+            margin: 0.3em 0;
+        }
+        .progression-path {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .progression-arrow {
+            color: #f1c40f;
+        }
+        td:nth-child(6), td:nth-child(7) {
+            font-size: 0.9em;
+            color: #f1c40f;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id="paths-container">
+        <div class="table-container">
+            <h2 class="table-title">修炼进阶体系</h2>
+            <table>
+                <tr>
+                    <th>体系类别</th>
+                    <th>称号阶段</th>
+                    <th>修行描述</th>
+                    <th>任务成就</th>
+                    <th>境界奖励</th>
+                    <th>特殊能力</th>  <!-- New column -->
+                    <th>进阶要求</th>  <!-- New column -->
+                    <th>其他体系对应</th>  <!-- New column -->
+                </tr>
+                <tr>
+                    <td>传道系<br>(免费用户)</td>
+                    <td>
+                        草药学徒→<br>
+                        药道初学者→<br>
+                        道术传人→<br>
+                        药道大师→<br>
+                        药道宗师
+                    </td>
+                    <td>
+                        从基础药材学习入门，逐渐掌握养生之道，最终成为文化传承使者<br>
+                        <span class="new-section">精通药道，引领文化复兴</span>
+                    </td>
+                    <td>
+                        完成基础任务<br>
+                        传播文化知识<br>
+                        组织文化活动<br>
+                        主持国际推广
+                    </td>
+                    <td>
+                        基础药材包<br>
+                        文化传播徽章<br>
+                        高级药材奖励<br>
+                        全球文化资源
+                    </td>
+                    <td>
+                        药道感知<br>
+                        文化研究<br>
+                        药道创新
+                    </td>
+                    <td>
+                        修为达到100<br>
+                        完成2个药道任务<br>
+                        获得5个推荐<br>
+                        3个用户反馈
+                    </td>
+                    <td>
+                        丹道：丹师→丹王→丹尊→丹圣→丹帝<br>
+                        科学：研究员→主任研究员→首席科学家→院士→诺奖得主<br>
+                        星系：星灵士→星脉师→星道君→星界主→星天帝<br>
+                        玄学：玄士→玄师→玄君→玄圣→玄帝<br>
+                        医道：医师→医王→医尊→医圣→医帝<br>
+                        经义：经生→经师→经君→经圣→经帝<br>
+                        魂道：魂师→魂王→魂尊→魂圣→魂帝<br>
+                        御兽：驯兽师→兽王→兽尊→兽圣→兽帝
+                    </td>
+                </tr>
+                <tr>
+                    <td>护道系<br>(普通用户)</td>
+                    <td>
+                        护道学徒→<br>
+                        护道初学者→<br>
+                        护道传人→<br>
+                        护道大师→<br>
+                        护道宗师
+                    </td>
+                    <td>
+                        通过修行，提升自我保护能力，最终成为正义的代言人<br>
+                        <span class="new-section">维护正义，传播护道理念</span>
+                    </td>
+                    <td>
+                        完成关系任务<br>
+                        培养新用户<br>
+                        主办护道大会<br>
+                        参与公益活动
+                    </td>
+                    <td>
+                        护道装备包<br>
+                        正义徽章<br>
+                        特殊护道技能奖励<br>
+                        社区影响力提升
+                    </td>
+                    <td>
+                        正义感知<br>
+                        社区推广<br>
+                        法律知识
+                    </td>
+                    <td>
+                        修为达到300<br>
+                        完成5个护道任务<br>
+                        获得10个推荐<br>
+                        社区贡献度达标
+                    </td>
+                    <td>
+                        兵道：武师→武王→武尊→武圣→武帝<br>
+                        科技：技术员→工程师→首席工程师→技术总监→科技领袖<br>
+                        星际：星际战士→星际统领→星际将军→星际元帅→星际主宰<br>
+                        机械：机甲师→机械大师→机神→机道尊→机械之主<br>
+                        防护：护卫→护法→护道→护圣→护帝<br>
+                        战技：战士→战将→战尊→战圣→战帝<br>
+                        剑道：剑士→剑王→剑尊→剑圣→剑帝<br>
+                        刀道：刀客→刀王→刀尊→刀圣→刀帝
+                    </td>
+                </tr>
+                <tr>
+                    <td>求道系<br>(付费用户)</td>
+                    <td>
+                        求道学徒→<br>
+                        求道初学者→<br>
+                        求道传人→<br>
+                        求道大师→<br>
+                        求道宗师
+                    </td>
+                    <td>
+                        追求真理，求索生命意义，努力成为哲学领袖<br>
+                        <span class="new-section">深思人生，助人求道</span>
+                    </td>
+                    <td>
+                        完成深度任务<br>
+                        创建求道社群<br>
+                        分享生活智慧<br>
+                        发表哲学著作
+                    </td>
+                    <td>
+                        智慧奖章<br>
+                        哲学书籍奖励<br>
+                        求道函数提升<br>
+                        社会认可提升
+                    </td>
+                    <td>
+                        哲学感知<br>
+                        生活智慧<br>
+                        价值观引导
+                    </td>
+                    <td>
+                        修为达到500<br>
+                        完成3个求道任务<br>
+                        获得15个推荐<br>
+                        发表重要著作
+                    </td>
+                    <td>
+                        儒道：文士→文师→文君→文圣→文帝<br>
+                        学术：博士→教授→特聘教授→院长→教育家<br>
+                        星命：星命师→星相大师→命理真人→天机主→命道帝<br>
+                        智慧：智者→贤者→圣者→道尊→智圣<br>
+                        谋略：谋士→谋师→谋君→谋圣→谋帝<br>
+                        策论：论士→论师→论君→论圣→论帝<br>
+                        心道：心师→心王→心尊→心圣→心帝<br>
+                        法道：法师→法王→法尊→法圣→法帝
+                    </td>
+                </tr>
+                <tr>
+                    <td>炼道系<br>(资深用户)</td>
+                    <td>
+                        炼道学徒→<br>
+                        炼道初学者→<br>
+                        炼道传人→<br>
+                        炼道大师→<br>
+                        炼道宗师
+                    </td>
+                    <td>
+                        利用所有已知炼道知识，灵活应用于日常生活中，最终成为炼道的宗师<br>
+                        <span class="new-section">超越极限，成就自我</span>
+                    </td>
+                    <td>
+                        完成高难度任务<br>
+                        传授炼道知识<br>
+                        发布炼道相关活动<br>
+                        创建社群影响力
+                    </td>
+                    <td>
+                        炼道知识包<br>
+                        炼道技能书<br>
+                        拥有特殊炼道权利<br>
+                        影响力提升
+                    </td>
+                    <td>
+                        知识掌握<br>
+                        实践创新<br>
+                        影响力提升
+                    </td>
+                    <td>
+                        修为达到800<br>
+                        完成5个炼道任务<br>
+                        获得20个推荐<br>
+                        社群互动
+                    </td>
+                    <td>
+                        阵道：阵师→阵王→阵尊→阵圣→阵帝<br>
+                        科研：实验员→研究组长→实验室主任→研究所长→科研泰斗<br>
+                        星阵：星阵师→星阵王→星阵君→星阵圣→星阵帝<br>
+                        能量：能量师→能源大师→能道君→能界主→能量之主<br>
+                        符道：符师→符王→符尊→符圣→符帝<br>
+                        器械：器匠→器师→器君→器圣→器帝
+                    </td>
+                </tr>
+                <tr>
+                    <td>悟道系<br>(高级用户)</td>
+                    <td>
+                        悟道学徒→<br>
+                        悟道初修→<br>
+                        悟道真人→<br>
+                        悟道大师→<br>
+                        悟道圣者
+                    </td>
+                    <td>
+                        钻研道法奥秘，参悟天地至理，最终成为大道先驱<br>
+                        <span class="new-section">开创道法，引领未来</span>
+                    </td>
+                    <td>
+                        完成高级修行任务<br>
+                        创建道法研究<br>
+                        发表道法理论<br>
+                        建立道法体系
+                    </td>
+                    <td>
+                        悟道法器<br>
+                        道法真经<br>
+                        特殊悟道权限<br>
+                        系统影响力
+                    </td>
+                    <td>
+                        道法感知<br>
+                        天机预测<br>
+                        道法创新<br>
+                        系统改造
+                    </td>
+                    <td>
+                        修为达到500<br>
+                        完成3个道法任务<br>
+                        获得10个推荐<br>
+                        贡献度达标
+                    </td>
+                    <td>
+                        器道：器师→器王→器尊→器圣→器帝<br>
+                        理论：理论研究员→理论专家→理论大师→理论权威→理论宗师<br>
+                        星道：星道士→星道师→星道君→星道圣→星道帝<br>
+                        量子：量子师→量子王→量子君→量子圣→量子帝<br>
+                        化道：化师→化王→化尊→化圣→化帝<br>
+                        灵修：灵士→灵师→灵君→灵圣→灵帝
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        document.body.insertBefore(canvas, document.body.firstChild);
+
+        let width, height;
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+        
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = 0;
+                this.vy = 0;
+                this.alpha = 0;
+                this.color = `hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
+                this.targetAlpha = Math.random() * 0.3 + 0.1;
+            }
+            
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                const force = Math.max(0, (200 - dist) / 200);
+                const angle = Math.atan2(dy, dx);
+                
+                this.vx += Math.cos(angle) * force * 0.2;
+                this.vy += Math.sin(angle) * force * 0.2;
+                
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                this.alpha += (this.targetAlpha - this.alpha) * 0.1;
+                
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color.replace(')', `, ${this.alpha})`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            
+            particles = Array(150).fill().map(() => new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(26, 26, 46, 0.1)';
+            ctx.fillRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
+</body>
+</html>
+</body></html>

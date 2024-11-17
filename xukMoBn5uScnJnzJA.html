@@ -1,0 +1,272 @@
+<html><head><base href="http://localhost/"></head><body>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>修道之路 - Advanced Cultivation Systems</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #1a1a2e;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+        }
+        canvas {
+            display: block;
+            position: fixed;
+            z-index: 1;
+        }
+        #paths-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            flex-wrap: wrap;
+            overflow-y: auto;
+        }
+        .table-container {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin: 2rem;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: bold;
+        }
+        td {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .table-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #f1c40f, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .new-section {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id="paths-container">
+        <div class="table-container">
+            <h2 class="table-title">五行修炼体系</h2>
+            <table>
+                <tr>
+                    <th>修炼阶段</th>
+                    <th>启蒙期</th>
+                    <th>修行期</th>
+                    <th>大成期</th>
+                    <th>圆满期</th>
+                </tr>
+                <tr>
+                    <td>金系</td>
+                    <td>锻金士<br><span class="new-section">金灵修士</span></td>
+                    <td>金元师<br><span class="new-section">御金真人</span></td>
+                    <td>金道君<br><span class="new-section">金皇</span></td>
+                    <td>金之尊<br><span class="new-section">金道至尊</span></td>
+                </tr>
+                <tr>
+                    <td>木系</td>
+                    <td>木灵士<br><span class="new-section">生木修士</span></td>
+                    <td>木元师<br><span class="new-section">木灵真人</span></td>
+                    <td>木道君<br><span class="new-section">木皇</span></td>
+                    <td>木之尊<br><span class="new-section">木道至尊</span></td>
+                </tr>
+                <tr>
+                    <td>水系</td>
+                    <td>引水士<br><span class="new-section">水灵修士</span></td>
+                    <td>水元师<br><span class="new-section">御水真人</span></td>
+                    <td>水道君<br><span class="new-section">水皇</span></td>
+                    <td>水之尊<br><span class="new-section">水道至尊</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2 class="table-title">天地灵修体系</h2>
+            <table>
+                <tr>
+                    <th>修炼体系</th>
+                    <th>初入门槛</th>
+                    <th>修行精进</th>
+                    <th>大道可期</th>
+                    <th>问鼎巅峰</th>
+                </tr>
+                <tr>
+                    <td>天道系</td>
+                    <td>观天士<br><span class="new-section">听天者</span></td>
+                    <td>通天师<br><span class="new-section">御天使</span></td>
+                    <td>掌天君<br><span class="new-section">天道使</span></td>
+                    <td>天道尊<br><span class="new-section">天道至圣</span></td>
+                </tr>
+                <tr>
+                    <td>地道系</td>
+                    <td>踏地士<br><span class="new-section">地灵士</span></td>
+                    <td>通地师<br><span class="new-section">地脉师</span></td>
+                    <td>御地君<br><span class="new-section">地道使</span></td>
+                    <td>地道尊<br><span class="new-section">地道至圣</span></td>
+                </tr>
+                <tr>
+                    <td>人道系</td>
+                    <td>修心士<br><span class="new-section">悟道者</span></td>
+                    <td>明心师<br><span class="new-section">通悟师</span></td>
+                    <td>见性君<br><span class="new-section">人道使</span></td>
+                    <td>人道尊<br><span class="new-section">人道至圣</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2 class="table-title">星辰修炼体系</h2>
+            <table>
+                <tr>
+                    <th>修炼路线</th>
+                    <th>入门境界</th>
+                    <th>进阶境界</th>
+                    <th>大成境界</th>
+                    <th>圆满境界</th>
+                </tr>
+                <tr>
+                    <td>日月系</td>
+                    <td>观星士<br><span class="new-section">星辰修士</span></td>
+                    <td>星元师<br><span class="new-section">星辰真人</span></td>
+                    <td>星垣君<br><span class="new-section">星辰王</span></td>
+                    <td>星道尊<br><span class="new-section">星辰至尊</span></td>
+                </tr>
+                <tr>
+                    <td>星宿系</td>
+                    <td>星灵士<br><span class="new-section">星宿修士</span></td>
+                    <td>星宿师<br><span class="new-section">星宿真人</span></td>
+                    <td>星宿君<br><span class="new-section">星宿王</span></td>
+                    <td>星宿尊<br><span class="new-section">星宿至尊</span></td>
+                </tr>
+                <tr>
+                    <td>璇玑系</td>
+                    <td>璇玑士<br><span class="new-section">璇玑修士</span></td>
+                    <td>璇玑师<br><span class="new-section">璇玑真人</span></td>
+                    <td>璇玑君<br><span class="new-section">璇玑王</span></td>
+                    <td>璇玑尊<br><span class="new-section">璇玑至尊</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        document.body.insertBefore(canvas, document.body.firstChild);
+
+        let width, height;
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+        
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = 0;
+                this.vy = 0;
+                this.alpha = 0;
+                this.color = `hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
+                this.targetAlpha = Math.random() * 0.3 + 0.1;
+            }
+            
+            update() {
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                const force = Math.max(0, (200 - dist) / 200);
+                const angle = Math.atan2(dy, dx);
+                
+                this.vx += Math.cos(angle) * force * 0.2;
+                this.vy += Math.sin(angle) * force * 0.2;
+                
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+                
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                this.alpha += (this.targetAlpha - this.alpha) * 0.1;
+                
+                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                ctx.fillStyle = this.color.replace(')', `, ${this.alpha})`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            
+            particles = Array(150).fill().map(() => new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(26, 26, 46, 0.1)';
+            ctx.fillRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.transform = `translate(${mouseX - 10}px, ${mouseY - 10}px)`;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
+</body>
+</html>
+</body></html>
