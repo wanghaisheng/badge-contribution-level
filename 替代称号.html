@@ -1,0 +1,365 @@
+<html><head><base href="http://localhost/"></head><body>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>修道之路 - Cultivation Paths Table</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #1a1a2e;
+            font-family: "Microsoft YaHei", sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .table-container {
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #f1c40f, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .alt-titles {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #f1c40f, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .level-1 {
+            fill: #CD7F32;
+            filter: drop-shadow(0 0 2px #CD7F32);
+        }
+
+        .level-2 {
+            fill: #C0C0C0;
+            filter: drop-shadow(0 0 3px #C0C0C0);
+        }
+
+        .level-3 {
+            fill: #FFD700;
+            filter: drop-shadow(0 0 4px #FFD700);
+        }
+
+        .level-4 {
+            fill: #50C878;
+            filter: drop-shadow(0 0 5px #50C878);
+        }
+
+        .level-5 {
+            fill: #B9F2FF;
+            filter: drop-shadow(0 0 6px #B9F2FF);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 6px #B9F2FF);
+            }
+            to {
+                filter: drop-shadow(0 0 12px #B9F2FF);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <h1>修道进阶路线详表</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>系统</th>
+                    <th>等级</th>
+                    <th>主要称号</th>
+                    <th>替代称号</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 传道系统 -->
+                <tr>
+                    <td rowspan="5">传道系统</td>
+                    <td>
+                        一级
+                        <svg class="badge level-1" viewBox="0 0 100 100">
+                            <path d="M50 5 L90 30 L90 70 L50 95 L10 70 L10 30 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#fff" font-size="30">1</text>
+                        </svg>
+                    </td>
+                    <td>药草引路人</td>
+                    <td>药境探索者、草木通灵师、自然之子、药田守望人、草药大家、药圃明师、草木先知、山野采药人</td>
+                </tr>
+                <tr>
+                    <td>
+                        二级
+                        <svg class="badge level-2" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">2</text>
+                        </svg>
+                    </td>
+                    <td>医道启蒙者</td>
+                    <td>养生明师、药理开悟者、医道启明星、生命园丁、济世明医、悬壶初士、药理通达者、医术启蒙使</td>
+                </tr>
+                <tr>
+                    <td>
+                        三级
+                        <svg class="badge level-3" viewBox="0 0 100 100">
+                            <polygon points="50,5 95,50 50,95 5,50" />
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">3</text>
+                        </svg>
+                    </td>
+                    <td>济世传薪人</td>
+                    <td>医道弘扬使、药理宣化师、妙手仁心者、医道播种人、杏林传道者、医理宣教使、药道育人师、济世明德使</td>
+                </tr>
+                <tr>
+                    <td>
+                        四级
+                        <svg class="badge level-4" viewBox="0 0 100 100">
+                            <path d="M50,5 L95,25 L95,75 L50,95 L5,75 L5,25 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">4</text>
+                        </svg>
+                    </td>
+                    <td>悬壶济世者</td>
+                    <td>医道通明使、济世菩提心、杏林使者、救世良医、悬壶济世尊、医道明德君、药理通神使、救世圣手</td>
+                </tr>
+                <tr>
+                    <td>
+                        五级
+                        <svg class="badge level-5" viewBox="0 0 100 100">
+                            <path d="M50,5 L90,25 L90,75 L50,95 L10,75 L10,25 Z"/>
+                            <circle cx="50" cy="50" r="30"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">5</text>
+                        </svg>
+                    </td>
+                    <td>医道圣贤</td>
+                    <td>药王再世、医道君子、济世大师、仁心圣手、医道至尊、药理天师、济世真君、医道化身</td>
+                </tr>
+
+                <!-- 护道系统 -->
+                <tr>
+                    <td rowspan="5">护道系统</td>
+                    <td>
+                        一级
+                        <svg class="badge level-1" viewBox="0 0 100 100">
+                            <path d="M50 5 L90 30 L90 70 L50 95 L10 70 L10 30 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#fff" font-size="30">1</text>
+                        </svg>
+                    </td>
+                    <td>药道守望者</td>
+                    <td>医术护法、药理卫士、医道守护者、药草护卫、药师守护者、医理保护者、草木守护者、药道安全者</td>
+                </tr>
+                <tr>
+                    <td>
+                        二级
+                        <svg class="badge level-2" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">2</text>
+                        </svg>
+                    </td>
+                    <td>医道守护使</td>
+                    <td>药道护法者、医道卫道人、医理守护使、药法捍卫者、生命守护者、医道监护者、药理防卫使、守护草木者</td>
+                </tr>
+                <tr>
+                    <td>
+                        三级
+                        <svg class="badge level-3" viewBox="0 0 100 100">
+                            <polygon points="50,5 95,50 50,95 5,50" />
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">3</text>
+                        </svg>
+                    </td>
+                    <td>医道昭明使</td>
+                    <td>医理护持者、药道明光使、医道护世人、药理明使、药卫生护者、医道守卫使、药道监护者、温情守护者</td>
+                </tr>
+                <tr>
+                    <td>
+                        四级
+                        <svg class="badge level-4" viewBox="0 0 100 100">
+                            <path d="M50,5 L95,25 L95,75 L50,95 L5,75 L5,25 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">4</text>
+                        </svg>
+                    </td>
+                    <td>医道明世君</td>
+                    <td>药道天使、医道守护神、医理明君、药界守护者、药理天尊、医道捍卫者、药道守世人、医理守护者</td>
+                </tr>
+                <tr>
+                    <td>
+                        五级
+                        <svg class="badge level-5" viewBox="0 0 100 100">
+                            <path d="M50,5 L90,25 L90,75 L50,95 L10,75 L10,25 Z"/>
+                            <circle cx="50" cy="50" r="30"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">5</text>
+                        </svg>
+                    </td>
+                    <td>医道天师</td>
+                    <td>药道化身、医道真君、医界守护尊、药理天尊、医道化身、草木天尊、药理监护者、药师顶天者</td>
+                </tr>
+
+                <!-- 求道系统 -->
+                <tr>
+                    <td rowspan="5">求道系统</td>
+                    <td>
+                        一级
+                        <svg class="badge level-1" viewBox="0 0 100 100">
+                            <path d="M50 5 L90 30 L90 70 L50 95 L10 70 L10 30 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#fff" font-size="30">1</text>
+                        </svg>
+                    </td>
+                    <td>寻药使者</td>
+                    <td>药道求索人、医理探寻者、药草追寻客、医道学徒、药道探索者、求药之人、医理探索者、草木求道者</td>
+                </tr>
+                <tr>
+                    <td>
+                        二级
+                        <svg class="badge level-2" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">2</text>
+                        </svg>
+                    </td>
+                    <td>悟道修药师</td>
+                    <td>药理参悟者、医道求真人、药道修行者、医理悟道人、医道探求者、药理启蒙者、求真药师、药道大法师</td>
+                </tr>
+                <tr>
+                    <td>
+                        三级
+                        <svg class="badge level-3" viewBox="0 0 100 100">
+                            <polygon points="50,5 95,50 50,95 5,50" />
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">3</text>
+                        </svg>
+                    </td>
+                    <td>医道求索君</td>
+                    <td>药道参玄人、医理明悟者、药理求真君、医道修行客、医道追求者、药道启蒙者、草木探索者、青春药师</td>
+                </tr>
+                <tr>
+                    <td>
+                        四级
+                        <svg class="badge level-4" viewBox="0 0 100 100">
+                            <path d="M50,5 L95,25 L95,75 L50,95 L5,75 L5,25 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">4</text>
+                        </svg>
+                    </td>
+                    <td>药道通玄者</td>
+                    <td>医道明心人、药理通神者、药道觉悟者、医理通天人、药之传道师、求道追寻者、草木通天人、道之信徒</td>
+                </tr>
+                <tr>
+                    <td>
+                        五级
+                        <svg class="badge level-5" viewBox="0 0 100 100">
+                            <path d="M50,5 L90,25 L90,75 L50,95 L10,75 L10,25 Z"/>
+                            <circle cx="50" cy="50" r="30"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">5</text>
+                        </svg>
+                    </td>
+                    <td>医道至尊</td>
+                    <td>药道真人、医理圣者、药界至尊、医道通神者、求道之人、药道领袖、草木之神、医道至人</td>
+                </tr>
+
+                <!-- 炼道系统 -->
+                <tr>
+                    <td rowspan="5">炼道系统</td>
+                    <td>
+                        一级
+                        <svg class="badge level-1" viewBox="0 0 100 100">
+                            <path d="M50 5 L90 30 L90 70 L50 95 L10 70 L10 30 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#fff" font-size="30">1</text>
+                        </svg>
+                    </td>
+                    <td>丹药学士</td>
+                    <td>药理研习生、医道技士、丹药学徒、炼药初修、药道学习者、炼丹学员、草木炼者、医理小修士</td>
+                </tr>
+                <tr>
+                    <td>
+                        二级
+                        <svg class="badge level-2" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">2</text>
+                        </svg>
+                    </td>
+                    <td>炼丹真传</td>
+                    <td>药道技师、医理工匠、丹道修习者、炼药专家、草木道师、药道技师、医理名家、丹药大师</td>
+                </tr>
+                <tr>
+                    <td>
+                        三级
+                        <svg class="badge level-3" viewBox="0 0 100 100">
+                            <polygon points="50,5 95,50 50,95 5,50" />
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">3</text>
+                        </svg>
+                    </td>
+                    <td>丹道大匠</td>
+                    <td>药理大师、医道技圣、丹道精英、炼药宗师、炼丹权威、医理宗师、丹道推广者、药理倡导者</td>
+                </tr>
+                <tr>
+                    <td>
+                        四级
+                        <svg class="badge level-4" viewBox="0 0 100 100">
+                            <path d="M50,5 L95,25 L95,75 L50,95 L5,75 L5,25 Z"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">4</text>
+                        </svg>
+                    </td>
+                    <td>炼丹宗师</td>
+                    <td>药道创新使、医理圣匠、丹道大宗、炼药大家、草木贡献者、医道推广者、丹道启蒙者、药理导师</td>
+                </tr>
+                <tr>
+                    <td>
+                        五级
+                        <svg class="badge level-5" viewBox="0 0 100 100">
+                            <path d="M50,5 L90,25 L90,75 L50,95 L10,75 L10,25 Z"/>
+                            <circle cx="50" cy="50" r="30"/>
+                            <text x="50" y="60" text-anchor="middle" fill="#1a1a2e" font-size="30">5</text>
+                        </svg>
+                    </td>
+                    <td>丹道至圣</td>
+                    <td>药理天师、医道创世主、丹道神匠、炼药圣手、草木宗师、医道名匠、丹道捍卫者、药道传教者</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+</body></html>
